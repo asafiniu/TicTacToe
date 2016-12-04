@@ -2,10 +2,13 @@ body{
 text-align:center;
 color:#58595b;
 }
-@media (max-width: 600px) {
-  body {
-    zoom:200%;
-  }
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+  body {zoom:200%}
+  body input,body #message{zoom:300%;}
 }
 .hidden{display:none}
 div#board{
