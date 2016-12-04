@@ -2,6 +2,11 @@ body{
 text-align:center;
 color:#58595b;
 }
+@media (max-width: 600px) {
+  body {
+    zoom:200%;
+  }
+}
 .hidden{display:none}
 div#board{
 margin:10px
