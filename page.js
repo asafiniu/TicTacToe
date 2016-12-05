@@ -95,7 +95,7 @@
             var value = cell.value();
             var location = {x:cell.x, y: cell.y};
             var nextCell = getNextCell(location);
-            while(getValue(nextCell.x, nextCell.y) == value) {
+            while(value && getValue(nextCell.x, nextCell.y) == value) {
                 cells.push(_boardData[nextCell.x][nextCell.y]);
                 nextCell = getNextCell(nextCell)
             }
@@ -114,18 +114,23 @@
             function topleft(loc){ return {x:loc.x-1, y: loc.y-1} }
         ];
         var _isWinningMove = function(cell){
-            var cells = [];
-            var i = 0;
-            while(cells.length < 3 && i < _directionFunctions.length) {
-                cells = cellsWithSameValue(cell, _directionFunctions[i++]);
-            }
+            for (var i = 0; i < _boardData.length; i++) {
+                for (var j = 0; j < _boardData[i].length; j++) {
+                    var cells = [];
+                    var d = 0;
+                    var x = _boardData[i][j];
+                    while(cells.length < 3 && d < _directionFunctions.length) {
+                        cells = cellsWithSameValue(x, _directionFunctions[d++]);
+                    }
 
-            if ( cells.length === 3 ) {
-                for(var i = 0; i < cells.length; i++) {
-                    cells[i].element.className += " partofrow"
+                    if ( cells.length === 3 ) {
+                        for(var c = 0; c < cells.length; c++) {
+                            cells[c].element.className += " partofrow"
+                        }
+
+                        return true
+                    }
                 }
-
-                return true
             }
 
             return false
